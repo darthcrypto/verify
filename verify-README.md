@@ -47,3 +47,18 @@ for i in cef{1..4}; do
    fi
 done
 ```
+
+### verify auditd has correct setting
+```bash
+#!/bin/bash
+
+SPACE="75"
+INSPECTOR=$(grep -w space_left /etc/audit/auditd.conf | awk '{print $3}')
+
+if [ $INSPECTOR != $SPACE ]; then
+  echo -e "\n ERROR: space left is at wrong capacity \n Current capacity is $INSPECTOR. Should be $SPACE \n"
+  exit 1
+else
+  echo -e "\n SUCCESS: space is at the correct capacity of $SPACE \n"
+fi
+```
