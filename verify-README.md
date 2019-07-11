@@ -69,9 +69,18 @@ for i in developer{2..4}; do ssh -qex -t $i 'hostname';done
 ### put a if statement inside a for loop
 for i in developer{2..4}; do ssh -qex -t $i  << ENDSSH
 if [[ ! -f /tmp/yolo ]];
-then echo "file doesn't exist"
+then echo "file doesn't exist on \$HOSTNAME"
 else
-echo "file does exist"
+echo "file does exist on \$HOSTNAME"
 fi
 ENDSSH
 done
+
+### escape characters in bash
+https://unix.stackexchange.com/questions/405250/passing-and-setting-variables-in-a-heredoc
+
+In short, use:
+
+unquoted heredoc keywords, e.g., EOF
+regular dollar char for outer (i.e. local) variables, e.g., $FOO
+escaped dollar char for inner (i.e. remote) variables, e.g. \$BAR
