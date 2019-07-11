@@ -66,4 +66,12 @@ fi
 ### quick hostname check
 for i in developer{2..4}; do ssh -qex -t $i 'hostname';done
 
-
+### put a if statement inside a for loop
+for i in developer{2..4}; do ssh -qex -t $i  << ENDSSH
+if [[ ! -f /tmp/yolo ]];
+then echo "file doesn't exist"
+else
+echo "file does exist"
+fi
+ENDSSH
+done
