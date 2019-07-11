@@ -62,3 +62,8 @@ else
   echo -e "\n SUCCESS: space is at the correct capacity of $SPACE \n"
 fi
 ```
+
+### quick hostname check
+for i in developer{2..4}; do ssh -qex -t $i 'hostname';done
+
+
